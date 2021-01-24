@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "489312756476",
-    "project_id": "veggierecipes-d5344",
-    "storage_bucket": "veggierecipes-d5344.appspot.com"
+    "project_number": "529886792202",
+    "firebase_url": "https://veggierecipes-75498-default-rtdb.firebaseio.com",
+    "project_id": "veggierecipes-75498",
+    "storage_bucket": "veggierecipes-75498.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:489312756476:android:4c6103efb3f4e1a6796d79",
+        "mobilesdk_app_id": "1:529886792202:android:bc32a3dac5bbcd2acf2df3",
         "android_client_info": {
           "package_name": "com.example.veggierecipes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "489312756476-spl5luju9i63mumnjein93us9jknfqtj.apps.googleusercontent.com",
+          "client_id": "529886792202-ur7ch488husgujjuhk9ho84shcjtk6ap.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBpzTviGIrqVF1UMIbdo1Axc10pMo1uVdE"
+          "current_key": "AIzaSyB68tii7D7DWwQephpl-jWoSlkbxg4Z7jA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "489312756476-spl5luju9i63mumnjein93us9jknfqtj.apps.googleusercontent.com",
+              "client_id": "529886792202-ur7ch488husgujjuhk9ho84shcjtk6ap.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
