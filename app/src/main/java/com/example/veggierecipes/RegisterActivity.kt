@@ -11,6 +11,8 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
@@ -53,13 +55,17 @@ class RegisterActivity : AppCompatActivity() {
     private fun performRegister() {
 
         val email = findViewById<EditText>(R.id.email_edittext_register).text.toString()
-        val password = findViewById<EditText>(R.id.password_edittext_register).toString()
+        val password = findViewById<EditText>(R.id.password_edittext_register).text.toString()
         Log.d("asd", "Email is : $email")
         Log.d("asd", "Password is : $password")
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.length < 6) {
 
-            Toast.makeText(this, "Please fill email - password fields ", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Please fill email - password fields (min 6 symbols)",
+                Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -82,13 +88,14 @@ class RegisterActivity : AppCompatActivity() {
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
 
         ref.putFile(selectedPhotoUri!!)
-            .addOnSuccessListener { it ->
+            .addOnSuccessListener { it->
                 Log.d("asd", "Successfully uploaded image: ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnSuccessListener {
                     Log.d("asd", "File Location: $it")
 
                     saveUserToFirebaseDatabase(it.toString())
+
                 }
             }
             .addOnFailureListener {
@@ -97,13 +104,15 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val uid = FirebaseAuth.getInstance().uid
+        val database = Firebase.database
+        val ref = database.getReference("users/$uid")
         val user = User(
-            uid,
+            uid!!,
             findViewById<EditText>(R.id.username_edittext_register).text.toString(),
             profileImageUrl
         )
+
 
         ref.setValue(user)
             .addOnSuccessListener {
