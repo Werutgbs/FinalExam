@@ -113,6 +113,7 @@ class RegisterActivity : AppCompatActivity() {
         )
 
 
+
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("asd", "Saved the user to Firebase Database")

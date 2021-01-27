@@ -1,3 +1,4 @@
 package com.example.veggierecipes
 
-data class User(val uid:String,val username:String,val profileImageUrl:String)
+class User(val uid:String,val username:String,val profileImageUrl:String?,val favoriteRecipes:MutableList<Int>?=null){
+}
