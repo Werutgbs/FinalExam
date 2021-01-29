@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VeggieRecipes">
-        <activity android:name=".DetailedRecipeActivity"></activity>
+        <activity android:name=".DetailedRecipeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LatestRecipesActivity" />
+        </activity>
         <activity android:name=".FavoriteRecipesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -23,11 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
     </application>

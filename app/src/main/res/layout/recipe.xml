@@ -25,8 +25,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="20dp"
+        android:background="@drawable/ic_favorite_shadow_24"
         android:textOff=""
         android:textOn=""
+        android:scaleY="1"
+        android:scaleX="1"
         app:layout_constraintEnd_toEndOf="@+id/recipe_background"
         app:layout_constraintTop_toTopOf="@+id/recipe_background" />
 
@@ -37,7 +40,8 @@
         android:textSize="20sp"
         android:background="@drawable/rounded_edittext"
         android:textStyle="bold"
-        android:layout_margin="30dp"
+        android:layout_margin="15dp"
+        android:maxWidth="300dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/recipe_background"
         app:layout_constraintStart_toStartOf="@+id/recipe_background" />

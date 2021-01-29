@@ -1,5 +1,6 @@
 package com.example.veggierecipes
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -38,6 +39,9 @@ class LoginActivity : AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
                 Log.d("asd", "Successfully logged in: ${it.result?.user?.uid}")
+                val intent = Intent(this,LatestRecipesActivity::class.java)
+                startActivity(intent)
+
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT).show()
