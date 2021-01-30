@@ -26,7 +26,7 @@ class FavoriteRecipesActivity : AppCompatActivity() {
 
     }
     private fun refreshApp(){
-        findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipetorefresh).setOnRefreshListener{
+        swipetorefresh.setOnRefreshListener{
             finish()
             startActivity(intent)
             swipetorefresh.isRefreshing = false
@@ -48,9 +48,11 @@ class FavoriteRecipesActivity : AppCompatActivity() {
                 recyclerview_favoriterecipes.adapter = adapter
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+            override fun onCancelled(error: DatabaseError){
+
             }
+
+
 
         })
     }

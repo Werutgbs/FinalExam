@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,38 +26,50 @@ class RecipeItem(private val recipe: Recipe,private val context: Context) : Item
         isFav(recipe,viewHolder.itemView)
         viewHolder.itemView.favorite_recipe_button.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Log.d("asd", "add to favs")
+
+
                 viewHolder.itemView.favorite_recipe_button.setBackgroundResource(R.drawable.ic_favorite_filled_24)
                 makeFavorite(recipe)
+
             } else {
+
+
                 viewHolder.itemView.favorite_recipe_button.setBackgroundResource(R.drawable.ic_favorite_shadow_24)
-                Log.d("asd", "remove from favs")
                 removeFavorite(recipe)
+
             }
         }
 
         viewHolder.itemView.setOnClickListener {
-            Log.d("asd",recipe.id)
+
             val intent = Intent(context,DetailedRecipeActivity::class.java)
             intent.putExtra("recipe",recipe)
             context.startActivity(intent)
+
         }
 
     }
 
     private fun removeFavorite(recipe: Recipe) {
+
         val uid = FirebaseAuth.getInstance().uid
         val ref = Firebase.database.getReference("users/$uid/favorites/${recipe.id}")
         ref.removeValue()
+        Toast.makeText(context,"Removed from favorites",Toast.LENGTH_SHORT).show()
+
     }
 
     private fun makeFavorite(recipe: Recipe) {
+
         val uid = FirebaseAuth.getInstance().uid
         val ref = Firebase.database.getReference("users/$uid/favorites/${recipe.id}")
         ref.setValue(recipe)
+        Toast.makeText(context,"Added to favorites",Toast.LENGTH_SHORT).show()
+
     }
 
     private fun isFav(recipe: Recipe,view : View)  {
+
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("users/$uid/favorites/")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {

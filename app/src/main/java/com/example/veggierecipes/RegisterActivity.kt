@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
         findViewById<Button>(R.id.register_button_register).setOnClickListener {
+
             performRegister()
         }
 
@@ -30,11 +32,12 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        findViewById<Button>(R.id.selectphoto_button_register).setOnClickListener {
+        findViewById<ImageView>(R.id.selectphoto_imageview_register).setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
-            findViewById<Button>(R.id.selectphoto_button_register).visibility = View.INVISIBLE
+
             startActivityForResult(intent, 1)
+
         }
     }
 
@@ -58,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
         Log.d("asd", "Email is : $email")
         Log.d("asd", "Password is : $password")
 
-        if (email.isEmpty() || password.length < 6) {
+        if (email.isEmpty()) {
 
             Toast.makeText(
                 this,
@@ -67,6 +70,29 @@ class RegisterActivity : AppCompatActivity() {
             ).show()
             return
         }
+        if (password.length < 6) {
+            Toast.makeText(
+                this,
+                "Please Enter Password (min 6 char)",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (selectedPhotoUri == null) {
+            Toast.makeText(
+                this,
+                "Please select image",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+
+
+        register_button_register.isClickable = false
+        already_have_account.isClickable = false
+
+
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -81,13 +107,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun uploadImageToFirebaseStorage() {
-        if (selectedPhotoUri == null) return
-
         val filename = UUID.randomUUID().toString()
         val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
 
         ref.putFile(selectedPhotoUri!!)
-            .addOnSuccessListener { it->
+            .addOnSuccessListener { it ->
                 Log.d("asd", "Successfully uploaded image: ${it.metadata?.path}")
 
                 ref.downloadUrl.addOnSuccessListener {
@@ -116,13 +140,13 @@ class RegisterActivity : AppCompatActivity() {
 
         ref.setValue(user)
             .addOnSuccessListener {
-                Log.d("asd", "Saved the user to Firebase Database")
-                val intent = Intent(this,LatestRecipesActivity::class.java)
+                val intent = Intent(this, LatestRecipesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
             .addOnFailureListener {
                 Log.d("asd", "Failed to set value to database: ${it.message}")
+                Toast.makeText(this, "Failed to set value to database", Toast.LENGTH_SHORT).show()
             }
     }
 }

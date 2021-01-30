@@ -21,7 +21,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.back_to_register_textview).setOnClickListener {
-            finish()
+            val intent = Intent(this,RegisterActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
     }
 
@@ -45,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT).show()
+
             }
     }
 

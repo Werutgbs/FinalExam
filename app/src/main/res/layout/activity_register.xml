@@ -25,7 +25,7 @@
         android:textColorHint="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectphoto_button_register" />
+        app:layout_constraintTop_toBottomOf="@+id/selectphoto_imageview_register" />
 
     <EditText
         android:id="@+id/email_edittext_register"
@@ -83,26 +83,27 @@
         app:layout_constraintStart_toStartOf="@+id/register_button_register"
         app:layout_constraintTop_toBottomOf="@+id/register_button_register" />
 
-    <Button
-        android:id="@+id/selectphoto_button_register"
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/selectphoto_imageview_register"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
-        android:text="@string/select_photo"
-        android:textColor="@color/white"
         android:background="@drawable/rounded_select_photo"
         app:backgroundTint="@color/darker_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/selectphoto_imageview_register"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/selectphoto_button_register"
-        app:layout_constraintEnd_toEndOf="@+id/selectphoto_button_register"
-        app:layout_constraintStart_toStartOf="@+id/selectphoto_button_register"
-        app:layout_constraintTop_toTopOf="@+id/selectphoto_button_register" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_photo"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/selectphoto_imageview_register"
+        app:layout_constraintEnd_toEndOf="@+id/selectphoto_imageview_register"
+        app:layout_constraintStart_toStartOf="@+id/selectphoto_imageview_register"
+        app:layout_constraintTop_toTopOf="@+id/selectphoto_imageview_register" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,14 +15,12 @@ class DetailedRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_recipe)
 
+
         val recipe = intent.getSerializableExtra("recipe") as? Recipe
         if (recipe != null) {
             Glide.with(this).load(recipe.imageUrl).into(findViewById(R.id.recipe_detailed_background))
             supportActionBar?.title = recipe.name
         }
-
-
-
 
 
         val pageAdapter = recipe?.let { PageAdapter(supportFragmentManager, it) }

@@ -15,23 +15,18 @@ class IngredientsAdapter(private val recipe: Recipe) :
     }
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
-//        holder.initialize(castList[position])
             holder.initialize(recipe.ingredients!![position])
-
     }
 
     override fun getItemCount(): Int {
         return recipe.ingredients!!.size
-
     }
 
     inner class CastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val ingredients: TextView = view.findViewById(R.id.ingredient)
         fun initialize(ingredient:String) {
-
             ingredients.text = ingredient
-
 
         }
     }

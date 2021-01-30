@@ -15,6 +15,7 @@ class InstructionsFragment(private val recipe:Recipe) : Fragment() {
     }
 
     private fun addDetails(view: View) {
+
         view.findViewById<TextView>(R.id.instruction).text = recipe.instructions
 
     }
@@ -23,8 +24,9 @@ class InstructionsFragment(private val recipe:Recipe) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_instructions, container, false)
+
     }
 
 
