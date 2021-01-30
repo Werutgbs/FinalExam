@@ -89,20 +89,22 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
-        register_button_register.isClickable = false
-        already_have_account.isClickable = false
-
 
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Log.d("asd", "Successfully created user with uid  : ${it.result?.user?.uid} ")
+
+                register_button_register.isClickable = false
+                already_have_account.isClickable = false
                 uploadImageToFirebaseStorage()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to create user : ${it.message}", Toast.LENGTH_LONG)
                     .show()
+
+
             }
     }
 
