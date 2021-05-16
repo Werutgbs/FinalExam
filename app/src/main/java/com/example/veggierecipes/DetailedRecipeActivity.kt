@@ -18,7 +18,8 @@ class DetailedRecipeActivity : AppCompatActivity() {
 
         val recipe = intent.getSerializableExtra("recipe") as? Recipe
         if (recipe != null) {
-            Glide.with(this).load(recipe.imageUrl).into(findViewById(R.id.recipe_detailed_background))
+            Glide.with(this).load(recipe.imageUrl)
+                .into(findViewById(R.id.recipe_detailed_background))
             supportActionBar?.title = recipe.name
         }
 
@@ -26,6 +27,8 @@ class DetailedRecipeActivity : AppCompatActivity() {
         val pageAdapter = recipe?.let { PageAdapter(supportFragmentManager, it) }
         findViewById<ViewPager>(R.id.view_pager).adapter = pageAdapter
         findViewById<TabLayout>(R.id.tab_layout).setupWithViewPager(findViewById(R.id.view_pager))
+
+//       TODO add credits
     }
 
 }

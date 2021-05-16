@@ -10,7 +10,7 @@ class PageAdapter(
     override fun getCount(): Int {
         return 2
     }
-
+//TODO change FragmentPagerAdapter
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {

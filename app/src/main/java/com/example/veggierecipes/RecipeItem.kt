@@ -49,7 +49,7 @@ class RecipeItem(private val recipe: Recipe,private val context: Context) : Item
         }
 
     }
-
+//TODO add credits
     private fun removeFavorite(recipe: Recipe) {
 
         val uid = FirebaseAuth.getInstance().uid
@@ -78,7 +78,7 @@ class RecipeItem(private val recipe: Recipe,private val context: Context) : Item
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+//TODO error msg           ^^^^^^
             }
 
         })

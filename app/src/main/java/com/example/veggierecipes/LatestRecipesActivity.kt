@@ -38,6 +38,7 @@ class LatestRecipesActivity : AppCompatActivity() {
 
         }
     }
+
     private fun getRecipes() {
         val ref = FirebaseDatabase.getInstance().getReference("/recipes")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -46,23 +47,23 @@ class LatestRecipesActivity : AppCompatActivity() {
                 snapshot.children.forEach {
                     val recipe = it.getValue(Recipe::class.java)
                     if (recipe != null) {
-                        adapter.add(RecipeItem(recipe,this@LatestRecipesActivity))
+                        adapter.add(RecipeItem(recipe, this@LatestRecipesActivity))
                     }
                 }
                 recyclerview_latest_recipes.adapter = adapter
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+//TODO error msg          ^^^^^^^^
             }
 
         })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.menu_favorite_recipes -> {
-                val intent =Intent (this,FavoriteRecipesActivity::class.java)
+                val intent = Intent(this, FavoriteRecipesActivity::class.java)
                 startActivity(intent)
 
             }
@@ -78,7 +79,7 @@ class LatestRecipesActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        menuInflater.inflate(R.menu.nav_menu,menu)
+        menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
 
     }
