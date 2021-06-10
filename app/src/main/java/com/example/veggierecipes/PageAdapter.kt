@@ -3,15 +3,18 @@ package com.example.veggierecipes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class PageAdapter(
-    fragmentManager: FragmentManager, private val recipe: Recipe
-) : FragmentPagerAdapter(fragmentManager) {
-    override fun getCount(): Int {
+    detailedRecipeActivity: DetailedRecipeActivity, private val recipe: Recipe
+) : FragmentStateAdapter(detailedRecipeActivity) {
+
+
+    override fun getItemCount(): Int {
         return 2
     }
-//TODO change FragmentPagerAdapter
-    override fun getItem(position: Int): Fragment {
+
+    override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
                 IngredientsFragment(recipe)
@@ -21,13 +24,6 @@ class PageAdapter(
                 InstructionsFragment(recipe)
 
             }
-        }
-    }
-
-    override fun getPageTitle(position: Int): CharSequence {
-        return when (position) {
-            0 -> "Ingredients"
-            else -> "Instructions"
         }
     }
 }
